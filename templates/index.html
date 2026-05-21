@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="STEM Access Awareness Dashboard — Visualizing educational disparities and STEM enrollment trends for girls and underserved communities worldwide.">
+  <meta name="keywords" content="STEM education, gender gap, data visualization, education equity, dashboard">
+  <meta name="author" content="STEM Access Dashboard">
+  <title>STEM Access Awareness Dashboard — Education Equity Insights</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+  <!-- Background Decoration -->
+  <div class="bg-decoration">
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+    <div class="bg-orb"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-brand">
+      <div class="nav-logo">SA</div>
+      <div class="nav-title"><span>STEM</span> Access</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#charts">Charts</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#data">Data</a></li>
+    </ul>
+    <div class="nav-controls">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <div class="hero-badge">📡 Live Data Dashboard</div>
+    <h1>
+      Bridging the<br>
+      <span class="gradient-text">STEM Education Gap</span>
+    </h1>
+    <p>
+      Exploring global disparities in STEM education access from enrollment rates to infrastructure gaps with
+      interactive visualizations that drive awareness and action.
+    </p>
+    <div class="hero-actions">
+      <a href="#charts" class="btn btn-primary">📊 Explore Data</a>
+      <a href="#insights" class="btn btn-secondary">💡 View Insights</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Filters -->
+    <section id="overview">
+      <div class="filters-bar reveal">
+        <div class="filter-group">
+          <label for="filterCountry">Country</label>
+          <select id="filterCountry" class="filter-select">
+            <option value="all">All Countries</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filterYear">Year</label>
+          <select id="filterYear" class="filter-select">
+            <option value="all">All Years</option>
+          </select>
+        </div>
+        <div class="filter-group filter-search">
+          <label for="searchInput">Search</label>
+          <input type="text" id="searchInput" placeholder="Search countries...">
+        </div>
+        <button class="btn btn-secondary" id="resetFilters">↻ Reset</button>
+      </div>
+    </section>
+
+    <!-- Stats Cards -->
+    <section class="stats-grid" id="statsGrid">
+      <div class="stat-card animate-in reveal">
+        <div class="stat-icon">🌍</div>
+        <div class="stat-value" id="statCountries" data-target="20">0</div>
+        <div class="stat-label">Countries Tracked</div>
+        <div class="stat-change positive">↑ Global Coverage</div>
+      </div>
+      <div class="stat-card animate-in reveal">
+        <div class="stat-icon">👩‍🔬</div>
+        <div class="stat-value" id="statEnrollment" data-target="42.8">0</div>
+        <div class="stat-label">Avg. Girls STEM Enrollment %</div>
+        <div class="stat-change positive">↑ +5.3% since 2019</div>
+      </div>
+      <div class="stat-card animate-in reveal">
+        <div class="stat-icon">📶</div>
+        <div class="stat-value" id="statInternet" data-target="71.2">0</div>
+        <div class="stat-label">Avg. Internet Access %</div>
+        <div class="stat-change positive">↑ +8.1% since 2019</div>
+      </div>
+      <div class="stat-card animate-in reveal">
+        <div class="stat-icon">📉</div>
+        <div class="stat-value" id="statGap" data-target="15.4">0</div>
+        <div class="stat-label">Avg. Gender Gap %</div>
+        <div class="stat-change negative">↓ Needs Attention</div>
+      </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section id="charts">
+      <div class="section-header reveal">
+        <div class="section-label">📊 Analytics</div>
+        <h2 class="section-title">Data Visualizations</h2>
+        <p class="section-subtitle">Interactive charts revealing STEM education patterns across the globe</p>
+      </div>
+
+      <div class="charts-grid">
+        <!-- Bar Chart -->
+        <div class="chart-card reveal">
+          <div class="chart-header">
+            <h3 class="chart-title">Girls STEM Enrollment by Country (2023)</h3>
+            <span class="chart-badge">Bar Chart</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="chart-card reveal">
+          <div class="chart-header">
+            <h3 class="chart-title">Girls vs Boys STEM Participation</h3>
+            <span class="chart-badge">Pie Chart</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Line Chart -->
+        <div class="chart-card full-width reveal">
+          <div class="chart-header">
+            <h3 class="chart-title">STEM Enrollment Trends Over Time</h3>
+            <span class="chart-badge">Line Chart</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Rural vs Urban Chart -->
+        <div class="chart-card reveal">
+          <div class="chart-header">
+            <h3 class="chart-title">Rural vs Urban Access Rates</h3>
+            <span class="chart-badge">Comparison</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="ruralUrbanChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Heatmap -->
+        <div class="chart-card reveal">
+          <div class="chart-header">
+            <h3 class="chart-title">STEM Funding Index by Country</h3>
+            <span class="chart-badge">Heatmap</span>
+          </div>
+          <div class="heatmap-wrapper">
+            <table class="heatmap-table" id="heatmapTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Insights Section -->
+    <section id="insights" class="insights-section">
+      <div class="section-header reveal">
+        <div class="section-label">💡 Key Findings</div>
+        <h2 class="section-title">Data-Driven Insights</h2>
+        <p class="section-subtitle">Automatically generated analysis from the dataset</p>
+      </div>
+
+      <div class="insights-grid" id="insightsGrid">
+        <!-- Insights will be populated by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Data Table Section -->
+    <section id="data" class="data-table-section">
+      <div class="section-header reveal">
+        <div class="section-label">📋 Raw Data</div>
+        <h2 class="section-title">Complete Dataset</h2>
+        <p class="section-subtitle">Browse, sort, and download the full dataset</p>
+      </div>
+
+      <div class="table-wrapper reveal">
+        <div class="table-toolbar">
+          <span id="tableInfo">Showing 0 entries</span>
+          <button class="btn btn-secondary" id="downloadCsv">⬇ Download CSV</button>
+        </div>
+        <div class="data-table-container">
+          <table class="data-table" id="dataTable">
+            <thead>
+              <tr>
+                <th data-sort="country">Country ↕</th>
+                <th data-sort="year">Year ↕</th>
+                <th data-sort="girls_stem_enrollment">Girls Enrollment ↕</th>
+                <th data-sort="boys_stem_enrollment">Boys Enrollment ↕</th>
+                <th data-sort="rural_access_rate">Rural Access ↕</th>
+                <th data-sort="urban_access_rate">Urban Access ↕</th>
+                <th data-sort="internet_access">Internet ↕</th>
+                <th data-sort="graduation_rate">Graduation ↕</th>
+                <th data-sort="stem_funding_index">Funding Index ↕</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+        <div class="table-pagination">
+          <span id="paginationInfo">Page 1 of 1</span>
+          <div class="pagination-controls" id="paginationControls"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">SA</div>
+        <div class="footer-info">
+          <p>STEM Access Awareness Dashboard</p>
+          <span>Built for Education Equity · 2024</span>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#charts">Charts</a>
+        <a href="#insights">Insights</a>
+        <a href="#data">Data</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
