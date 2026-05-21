@@ -4,7 +4,7 @@ A modern, interactive web dashboard that visualizes STEM education access data h
 
 Built as a portfolio-ready project demonstrating data analysis, frontend UI development, visualization skills, and storytelling with data.
 
-![Dashboard Preview](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-brightgreen?style=flat-square)](https://stem-access.vercel.app)
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python)
 ![Flask](https://img.shields.io/badge/Flask-3.0-lightgrey?style=flat-square&logo=flask)
 ![License](https://img.shields.io/badge/License-MIT-purple?style=flat-square)
